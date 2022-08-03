@@ -1,0 +1,46 @@
+<div class="container" >
+    <div class="row">
+        <div class="col-auto"><a routerLink="/employees" class="btn btn-primary">Employee List</a></div>
+        <div class="col-sm-3"><a routerLink="" class="btn btn-primary">Home</a></div>
+    </div>
+    <br>
+    <div class="row"><h4 >Employee Form</h4></div>
+    <form #employee="ngForm">
+        <div class="row">
+        <div class="col-sm-3"><label for="">Emp No</label></div>
+        <div class="col-sm-6"><input type="number"name="empno"[(ngModel)] =formModel.empno ></div>
+    </div>
+    &nbsp;
+    <div class="row">
+        <div class="col-sm-3"><label for="">Employee name</label></div>
+        <div class="col-sm-6"><input type="text"name="ename"[(ngModel)] = formModel.ename></div>
+    </div>
+    &nbsp;
+    <div class="row">
+        <div class="col-sm-3"><label for="">Hiredate</label></div>
+        <div class="col-sm-6"><input type="date"name="hiredate"[(ngModel)] = formModel.hiredate></div>
+    </div>
+    &nbsp;
+    <div class="row">
+        <div class="col-sm-3"><label for="">Job</label></div>
+        <div class="col-sm-6"><input type="text"name="job"[(ngModel)] = formModel.job></div>
+    </div>
+    &nbsp;
+    <div class="row">
+        <div class="col-sm-3"><label for="">managerID</label></div>
+        <div class="col-sm-6"><input type="number"name="managerID" [(ngModel)] = formModel.managerID></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><label for="">Salary</label></div>
+        <div class="col-sm-6"><input type="number"name="salary" [(ngModel)] = formModel.salary></div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-3"><button type="submit" class="btn btn-success">submit</button></div>
+       
+    </div>
+    </form> 
+ </div>
+
+

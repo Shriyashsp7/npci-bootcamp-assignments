@@ -1,0 +1,32 @@
+<div class="container">
+    <a routerLink="/empform" class="btn btn-info" type="button">Add Employees</a>
+    &nbsp;
+    &nbsp;
+    <a routerLink="" class="btn btn-info">Home </a>
+    <h4>Employee List</h4>
+    <table class="table  table-bordered table-stripped ">
+        <tr>
+            <th>EMPNO</th>
+            <th>Name</th>
+            <th>Job </th>
+            <th>Hiredate</th>
+            <th>Manager Id</th>
+            <th>Salary</th>
+            <th>Commission </th>
+            <th>DeptNo</th>
+        </tr>
+
+        <tr *ngFor="let emp of employees" >
+            <td>{{emp.empno}}</td>
+            <td>{{emp.ename}}</td>
+            <td>{{emp.hiredate}}</td>
+            <td>{{emp.managerID}}</td>
+            <td>{{emp.salary }}</td>
+            <td>{{emp.commission}}</td>
+            <td>{{emp.deptno}}</td>
+            
+           
+
+
+        </tr>
+    </table>

@@ -1,0 +1,23 @@
+<div class="container">
+    <a routerLink="/deptform" class="btn btn-info">Add Deapertments</a>
+    &nbsp;
+    &nbsp;
+    <a routerLink="" class="btn btn-info">Home </a>
+    <h4>Department List</h4>
+    <table class="table  table-bordered table-stripped ">
+        <tr>
+            <th>Department NO</th>
+            <th> Department Name</th>
+            <th>Location </th>
+            
+        </tr>
+
+        <tr *ngFor="let dept of departments"  >
+            <td>{{dept.deptno}}</td>
+            <td>{{dept.dname}}</td>
+            <td>{{dept.location}}</td>
+           
+
+
+        </tr>
+    </table>

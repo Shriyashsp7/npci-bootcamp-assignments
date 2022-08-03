@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #product{
     margin-top: 20px;
     margin-bottom: 30px;
@@ -10,4 +11,18 @@
 img{
     height : 254px;
     width: 254px;
+=======
+#product{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.card{
+    height : 450px;
+}
+
+img{
+    height : 254px;
+    width: 254px;
+>>>>>>> a2609a70621545abf1929e8d5eca96ad83080b3c
 }
