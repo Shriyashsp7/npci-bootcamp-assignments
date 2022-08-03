@@ -24,7 +24,8 @@ const route : Routes =[
   {path : 'categoryform',component : CategoryFormComponentComponent},
   {path : 'merchant',component : MerchantComponent},
   {path : 'shop',component : BuyerComponent},
-  {path : 'cart',component : CartComponent}
+  {path : 'cart',component : CartComponent},
+  {path : 'update/:pid',component: ProductFormComponentComponent}
 ]
 
 @NgModule({

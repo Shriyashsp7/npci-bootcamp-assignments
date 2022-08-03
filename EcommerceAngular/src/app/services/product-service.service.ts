@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ProductServiceService {
   produrl="http://localhost:8080/api/prod"
   caturl="http://localhost:8080/api/cat"
-
+  cartProducts : Product[]
   constructor(private  httpClient : HttpClient) { }
     getAllProduct() : Observable<Product[]>{
       return this.httpClient.get<GetProductResponse>(this.produrl).pipe(map(response => response._embedded.products));
@@ -45,6 +45,54 @@ export class ProductServiceService {
       return this.httpClient.post<Category>(this.caturl,category,httpOptions)
       
     }
+    getProductById(pid : number):Observable<Product>{
+      const proURL = "http://localhost:8080/api/prod/"+pid
+
+      return this.httpClient.get<Product>(proURL)
+    }
+
+    updateProduct(product : Product) : Observable<Product>{
+      console.log(product);
+      const httpOptions ={
+        headers : new HttpHeaders({
+          'Content-type' : 'application/json',
+          'Authorization' : 'auth-token',
+          'Access-Control-Allow-Origin' : '*'
+        })
+      };
+      
+      return this.httpClient.put<Product>(this.produrl+`/${product.pid}`,product,httpOptions)
+    }
+
+    deleteProduct(pid : number) : Observable<Product>{
+      
+
+      const httpOptions ={
+        headers : new HttpHeaders({
+          'Content-type' : 'application/json',
+          'Authorization' : 'auth-token',
+          'Access-Control-Allow-Origin' : '*'
+        })
+      };
+      return this.httpClient.delete<Product>(this.produrl+`/${pid}`,httpOptions)
+      
+    }
+    getProductByName(pname : string) : Observable<Product[]>{
+      const prodByName="http://localhost:8080/api/prod/search/findBypnameIgnoreCase?pname=" + pname;
+      return this.httpClient.get<GetProductResponse>(prodByName).pipe(map(response => response._embedded.products))
+    }
+
+    getProductByCategoryId(categoryid : number){
+      const prodbycatid="http://localhost:8080/api/prod/search/findBycategoryid?id="+categoryid;
+      return this.httpClient.get<GetProductResponse>(prodbycatid).pipe(map(response => response._embedded.products))
+    }
+  
+
+    addToCart(product : Product){
+      this.cartProducts.push(product)
+    }
+
+    
   
 }
 interface GetProductResponse{

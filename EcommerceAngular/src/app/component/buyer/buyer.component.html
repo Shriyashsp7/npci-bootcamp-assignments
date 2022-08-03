@@ -3,6 +3,28 @@
         <div class="col-sm-3"><a routerLink="" class="btn btn-primary">Home</a></div>
         <div class="col-auto"><a routerLink="/cart" class="btn btn-primary">Cart</a></div>
     </div>
+    <form class="form-header" #searchform="ngForm"  (ngSubmit)="getProductByName(pname)">
+        <h6>Search by Product name</h6>
+        <input type="text" name="ename" [(ngModel)]="pname"/>
+        &nbsp;
+        <button class="btn btn-warning" type="submit" >search</button>
+        &nbsp;
+        &nbsp;
+        
+    </form>
+    &nbsp;
+    <form class="form-header" #searchfo="ngForm"  (ngSubmit)="getProductByCategoryId(categoryid)">
+        <h6>Search by Category</h6>
+      
+            <select name="Category" [(ngModel)] = "categoryid">
+                    
+                <option *ngFor="let cat of categories" value="{{cat.categoryId}}">{{cat.categoryName}}</option>
+            </select>
+
+        &nbsp;
+        <button class="btn btn-warning" type="submit" >search</button>
+    </form>
+    
     <div class="row align-items-start" id="product">
         <div class="col-3" *ngFor="let prod of products">
             <div class="card" style="width: 18rem;">
@@ -15,18 +37,18 @@
                     <p style="color: green;">{{prod.unitprice}}</p>
 
                     <button type="button" id="Buy"class="btn btn-warning" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">
+                        [attr.data-bs-target]="'#modal'+prod.pid">
                         Buy now
                     </button>
                     &nbsp;
-                    <button id="cart" type="button" class="btn btn-warning" data-bs-toggle="modal"
+                    <!-- <button id="cart" type="button" class="btn btn-warning" 
                         >
                         Add to Cart
-                    </button>
+                    </button> -->
 
                     <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id=modal{{prod.pid}} data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngIf="prod">
                         <div class="modal-dialog" >
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -45,7 +67,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Add to Cart</button>
+                                         (click)="addToCart(prod)">Add to Cart</button>
                                     
                                 </div>
                             </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/common/product';
 import { ProductServiceService } from 'src/app/services/product-service.service';
 
@@ -9,7 +10,8 @@ import { ProductServiceService } from 'src/app/services/product-service.service'
 })
 export class ProductListComponentComponent implements OnInit {
   products : Product[]
-  constructor(private service : ProductServiceService) { }
+  pname : string
+  constructor(private service : ProductServiceService,private route: Router) { }
 
   ngOnInit(): void {
     this.listOfProducts()
@@ -22,4 +24,30 @@ export class ProductListComponentComponent implements OnInit {
       
     })
   }
+
+  updateProduct(pid : number){
+    this.route.navigateByUrl("/update/"+pid)
+  }
+
+  deleteProduct(pid : number){
+    if(confirm("Do you want to Delete?")){
+      this.service.deleteProduct(pid).subscribe(data =>{
+        console.log("deleted");
+        this.listOfProducts();
+        
+      })
+    }
+
+  }
+
+  getProductByName(pname : string){
+    this.service.getProductByName(pname).subscribe(data =>{
+  
+      this.products =data
+    })
+  }
+
+
+
+
 }
